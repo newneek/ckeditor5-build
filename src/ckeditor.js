@@ -35,6 +35,7 @@ export default class InlineEditor extends InlineEditorBase {}
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
+	Essentials,
 	UploadAdapter,
 	Autoformat,
 	Bold,
