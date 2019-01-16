@@ -42,7 +42,6 @@ InlineEditor.builtinPlugins = [
 	BlockQuote,
 	CKFinder,
 	EasyImage,
-	Heading,
 	Image,
 	ImageCaption,
 	ImageStyle,
@@ -61,36 +60,17 @@ InlineEditor.builtinPlugins = [
 InlineEditor.defaultConfig = {
 	toolbar: {
 		items: [
-			'heading',
-			'|',
 			'bold',
-			'italic',
-			'link',
-			'bulletedList',
-			'numberedList',
-			'imageUpload',
-			'blockQuote',
-			'insertTable',
-			'mediaEmbed',
-			'undo',
-			'redo'
+                        'fontSize',
+                        'blockQuote',
+                        'quotes',
+                        'comment',
+                        'bulletedList',
+                        'numberedList',
+                        'link',
+                        'imageUpload',
+                        'mediaEmbed',
 		]
 	},
-	image: {
-		toolbar: [
-			'imageStyle:full',
-			'imageStyle:side',
-			'|',
-			'imageTextAlternative'
-		]
-	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
-	},
-	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
