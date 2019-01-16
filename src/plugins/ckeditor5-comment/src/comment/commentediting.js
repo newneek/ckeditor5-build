@@ -1,6 +1,6 @@
 
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import AttributeCommand from '../attributecommand';
+import AttributeCommand from '@ckeditor/ckeditor5-basic-styles/src/attributecommand';
 
 const COMMENT = 'comment';
 
