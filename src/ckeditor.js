@@ -30,11 +30,14 @@ import Font from '@ckeditor/ckeditor5-font/src/font';
 import Quotes from './plugins/ckeditor5-quotes/src/quotes';
 import Comment from './plugins/ckeditor5-comment/src/comment';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
+import Paste from './plugins/ckeditor5-paste/src/paste';
+
 
 export default class InlineEditor extends InlineEditorBase {}
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
+	Paste,
 	Essentials,
 	UploadAdapter,
 	Autoformat,
