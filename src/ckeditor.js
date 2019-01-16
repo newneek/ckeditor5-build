@@ -27,13 +27,14 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
-
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import Quotes from './plugins/ckeditor5-quotes/src/quotes';
+import Comment from './plugins/ckeditor5-comment/src/comment';
 
 export default class InlineEditor extends InlineEditorBase {}
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
-	Essentials,
 	UploadAdapter,
 	Autoformat,
 	Bold,
@@ -50,8 +51,10 @@ InlineEditor.builtinPlugins = [
 	Link,
 	List,
 	MediaEmbed,
-	Paragraph,
 	PasteFromOffice,
+	Font,
+	Comment,
+	Quotes,
 ];
 
 // Editor configuration.
