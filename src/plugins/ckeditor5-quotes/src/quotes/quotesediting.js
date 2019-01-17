@@ -16,11 +16,9 @@ export default class QuotesEditing extends Plugin {
 			view: 'q',
 		} );
 
-		// Create bold command.
+		// Create quotes command.
 		editor.commands.add( QUOTES, new AttributeCommand( editor, QUOTES) );
 
-		// Set the Ctrl+B keystroke.
-		editor.keystrokes.set( 'CTRL+Q', QUOTES );
 	}
 }
 

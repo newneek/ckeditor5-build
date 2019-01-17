@@ -26,12 +26,11 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
-import Font from '@ckeditor/ckeditor5-font/src/font';
 import Quotes from './plugins/ckeditor5-quotes/src/quotes';
 import Comment from './plugins/ckeditor5-comment/src/comment';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
 import Paste from './plugins/ckeditor5-paste/src/paste';
-
+import Big from './plugins/ckeditor5-big/src/big';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -55,25 +54,32 @@ InlineEditor.builtinPlugins = [
 	List,
 	MediaEmbed,
 	PasteFromOffice,
-	Font,
 	Comment,
 	Quotes,
+	Big,
+	Heading,
 ];
 
 // Editor configuration.
 InlineEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'heading',
 			'bold',
-                        'fontSize',
-                        'blockQuote',
-                        'quotes',
-                        'comment',
-                        'bulletedList',
-                        'numberedList',
-                        'link',
-                        'imageUpload',
-                        'mediaEmbed',
+			'big',
+			'blockQuote',
+			'quotes',
+			'comment',
+			'bulletedList',
+			'link',
+			'imageUpload',
+			'mediaEmbed',
+		]
+	},
+	heading: {
+		options: [
+			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+			{ model: 'heading3', view: 'h3', title: 'Heading3', class: 'ck-heading_heading3' },
 		]
 	},
 	language: 'en'

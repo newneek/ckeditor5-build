@@ -18,7 +18,6 @@ export default class QuotesUI extends Plugin {
 			view.set( {
 				label: t( 'Quotes' ),
 				icon: quotesIcon,
-				keystroke: 'CTRL+Q',
 				tooltip: true
 			} );
 
