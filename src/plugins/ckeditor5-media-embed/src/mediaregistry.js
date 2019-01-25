@@ -222,11 +222,14 @@ class Media {
 		if ( options.renderForEditingView || ( options.renderMediaPreview && this.url && this._previewRenderer ) ) {
 			if ( this.url ) {
 				attributes[ 'data-oembed-url' ] = this.url;
+				attributes.style = "position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;"
 			}
 
 			if ( options.renderForEditingView ) {
 				attributes.class = 'ck-media__wrapper';
 			}
+
+			//div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 56.2493%;
 
 			const mediaHtml = this._getPreviewHtml( options );
 
@@ -238,13 +241,33 @@ class Media {
 				return domElement;
 			} );
 		} else {
+			const attributes = {};
 			if ( this.url ) {
-				attributes.url = this.url;
+				attributes.src = "https://www.youtube.com/embed/" + this.getYoutubeVideoId(this.url) ;
+				attributes.style = "width: 100%; height: 100%; top: 0; left: 0;";
+				attributes.frameorder = "0";
+				attributes.allow = "autoplay; encrypted-media";
+				attributes.allowFullscreen="";
 			}
-
-			return writer.createEmptyElement( 'oembed', attributes );
+			return writer.createEmptyElement( 'iframe', attributes );
 		}
 	}
+
+
+
+	getYoutubeVideoId(url){
+		var ID = '';
+		url = url.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+		if(url[2] !== undefined) {
+			ID = url[2].split(/[^0-9a-z_\-]/i);
+			ID = ID[0];
+		}
+		else {
+			ID = url.toString();
+		}
+		return ID;
+	}
+
 
 	/**
 	 * Returns the HTML string of the media content preview.
