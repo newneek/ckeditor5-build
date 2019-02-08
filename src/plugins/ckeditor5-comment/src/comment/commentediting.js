@@ -18,7 +18,7 @@ export default class CommentEditing extends Plugin {
 		editor.conversion.attributeToElement( {
 			model: COMMENT,
 			view: {
-            			name: 'p',
+				name: 'p',
 				styles: {
 					'color' : '#7f8c8d',
 					'font-size' : '14px',

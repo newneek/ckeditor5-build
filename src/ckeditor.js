@@ -31,6 +31,7 @@ import Comment from './plugins/ckeditor5-comment/src/comment';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
 import Paste from './plugins/ckeditor5-paste/src/paste';
 import Big from './plugins/ckeditor5-big/src/big';
+import Sns from './plugins/ckeditor5-sns-embed/src/snsembed';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -58,6 +59,7 @@ InlineEditor.builtinPlugins = [
 	Quotes,
 	Big,
 	Heading,
+	Sns,
 ];
 
 // Editor configuration.
@@ -74,6 +76,7 @@ InlineEditor.defaultConfig = {
 			'link',
 			'imageUpload',
 			'mediaEmbed',
+			'sns',
 		]
 	},
 	heading: {

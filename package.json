@@ -68,6 +68,7 @@
     "preversion": "npm run build; if [ -n \"$(git status src/ckeditor.js build/ --porcelain)\" ]; then git add -u src/ckeditor.js build/ && git commit -m 'Internal: Build.'; fi"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-vue": "^1.0.0-beta.1"
+    "@ckeditor/ckeditor5-vue": "^1.0.0-beta.1",
+    "dom-parser": "^0.1.5"
   }
 }
