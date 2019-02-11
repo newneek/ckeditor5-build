@@ -11,7 +11,6 @@ import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapte
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
@@ -28,10 +27,12 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Quotes from './plugins/ckeditor5-quotes/src/quotes';
 import Comment from './plugins/ckeditor5-comment/src/comment';
-import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
+//import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
+import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paste from './plugins/ckeditor5-paste/src/paste';
 import Big from './plugins/ckeditor5-big/src/big';
-// import Sns from './plugins/ckeditor5-sns-embed/src/snsembed';
+import Sns from './plugins/ckeditor5-sns-embed/src/sns';
+import BlockQuote from './plugins/ckeditor5-block-quote/src/blockquote';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -59,7 +60,7 @@ InlineEditor.builtinPlugins = [
 	Quotes,
 	Big,
 	Heading,
-	// Sns,
+	Sns,
 ];
 
 // Editor configuration.
@@ -76,7 +77,7 @@ InlineEditor.defaultConfig = {
 			'link',
 			'imageUpload',
 			'mediaEmbed',
-			// 'sns',
+			'sns',
 		]
 	},
 	heading: {

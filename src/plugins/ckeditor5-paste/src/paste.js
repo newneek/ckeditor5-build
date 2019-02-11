@@ -18,26 +18,26 @@ export default class Paste extends Plugin {
 	}
 	init() {
 		const editor = this.editor;
-		const clipboardPlugin = editor.plugins.get('Clipboard');
+		const clipboardPlugin = editor.plugins.get( 'Clipboard' );
 		const editingView = editor.editing.view;
 
-		editingView.document.on('clipboardInput', (evt, data) => {
-			if (editor.isReadOnly) {
+		editingView.document.on( 'clipboardInput', ( evt, data ) => {
+			if ( editor.isReadOnly ) {
 				return;
 			}
 
 			const dataTransfer = data.dataTransfer;
-			let pastedData = dataTransfer.getData('text/xml');
 
+			let content = plainTextToHtml( dataTransfer.getData( 'text/plain' ).replace(/<\/?[^>]+>/ig, " ")).replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"');
 
-			pastedData = pastedData.replace(/(<([^>]+)>)/ig,"").replace(/[\u2018\u2019]/g, "'").replace(/[\u201C\u201D]/g, '"'); //태그 제거
-			pastedData = clipboardPlugin._htmlDataProcessor.toView(pastedData);
-			clipboardPlugin.fire('inputTransformation', {pastedData, dataTransfer});
+			content = clipboardPlugin._htmlDataProcessor.toView( content );
+
+			clipboardPlugin.fire( 'inputTransformation', { content, dataTransfer } );
 
 			editingView.scrollToTheSelection();
 
 			evt.stop();
-		});
+		} );
 	}
 
 }
