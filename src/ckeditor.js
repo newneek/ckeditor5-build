@@ -66,6 +66,7 @@ InlineEditor.builtinPlugins = [
 // Editor configuration.
 InlineEditor.defaultConfig = {
 	toolbar: {
+		viewportTopOffset : 60,
 		items: [
 			'heading',
 			'bold',
