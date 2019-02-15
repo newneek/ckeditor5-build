@@ -60,7 +60,7 @@ export function isMediaWidget( viewElement ) {
  */
 export function createMediaFigureElement( writer, registry, url, options ) {
 	//const figure = writer.createContainerElement( 'figure', { class: 'media' } );
-	const figure = writer.createContainerElement( 'figure', {class: 'media' } );
+	const figure = writer.createContainerElement( 'figure', {class: 'ck-media' } );
 
 
 	// TODO: This is a hack. Without it, the figure in the data pipeline will contain &nbsp; because
