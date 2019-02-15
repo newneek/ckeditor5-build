@@ -19,7 +19,6 @@ import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
-import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
@@ -28,7 +27,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Quotes from './plugins/ckeditor5-quotes/src/quotes';
 import Comment from './plugins/ckeditor5-comment/src/comment';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
-
+import Link from './plugins/ckeditor5-link/src/link';
 import Paste from './plugins/ckeditor5-paste/src/paste';
 import Big from './plugins/ckeditor5-big/src/big';
 import Sns from './plugins/ckeditor5-sns-embed/src/sns';
