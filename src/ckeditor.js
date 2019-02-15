@@ -83,8 +83,8 @@ InlineEditor.defaultConfig = {
 	},
 	heading: {
 		options: [
-			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-			{ model: 'heading3', view: 'h3', title: 'Heading3', class: 'ck-heading_heading3' },
+			{ model: 'paragraph', title: '일반', class: 'ck-heading_paragraph' },
+			{ model: 'heading3', view: 'h3', title: '소제목', class: 'ck-heading_heading3' },
 		]
 	},
 	language: 'en'
