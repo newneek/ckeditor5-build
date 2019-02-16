@@ -32,6 +32,7 @@ import Paste from './plugins/ckeditor5-paste/src/paste';
 import Big from './plugins/ckeditor5-big/src/big';
 import Sns from './plugins/ckeditor5-sns-embed/src/sns';
 import BlockQuote from './plugins/ckeditor5-block-quote/src/blockquote';
+import Div from './plugins/ckeditor5-div/src/div';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -60,6 +61,7 @@ InlineEditor.builtinPlugins = [
 	Big,
 	Heading,
 	Sns,
+	Div,
 ];
 
 // Editor configuration.
