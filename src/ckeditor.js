@@ -15,8 +15,7 @@ import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import Quotes from './plugins/ckeditor5-quotes/src/quotes';
-import Comment from './plugins/ckeditor5-comment/src/comment';
+import Quote from './plugins/ckeditor5-quote/src/quote';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
 import Link from './plugins/ckeditor5-link/src/link';
 import Paste from './plugins/ckeditor5-paste/src/paste';
@@ -51,8 +50,7 @@ InlineEditor.builtinPlugins = [
 	List,
 	MediaEmbed,
 	PasteFromOffice,
-	Comment,
-	Quotes,
+	Quote,
 	Big,
 	Heading,
 	Sns,
@@ -68,8 +66,7 @@ InlineEditor.defaultConfig = {
 			'bold',
 			'big',
 			'blockQuote',
-			'quotes',
-			'comment',
+			'quote',
 			'bulletedList',
 			'link',
 			'imageUpload',
@@ -81,6 +78,14 @@ InlineEditor.defaultConfig = {
 		options: [
 			{ model: 'paragraph', title: '일반', class: 'ck-heading_paragraph' },
 			{ model: 'heading3', view: 'h3', title: '소제목', class: 'ck-heading_heading3' },
+			{
+				model: 'comment',
+				view: {
+					name: 'p',
+					classes: ['comment']
+				},
+				title: '코멘트'
+			},
 		]
 	},
 	language: 'en'
