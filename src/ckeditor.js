@@ -12,18 +12,9 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
-import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
-import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
-import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import List from '@ckeditor/ckeditor5-list/src/list';
-import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import Table from '@ckeditor/ckeditor5-table/src/table';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Quotes from './plugins/ckeditor5-quotes/src/quotes';
 import Comment from './plugins/ckeditor5-comment/src/comment';
 import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
@@ -33,6 +24,11 @@ import Big from './plugins/ckeditor5-big/src/big';
 import Sns from './plugins/ckeditor5-sns-embed/src/sns';
 import BlockQuote from './plugins/ckeditor5-block-quote/src/blockquote';
 import Div from './plugins/ckeditor5-div/src/div';
+import Image from './plugins/ckeditor5-image/src/image';
+import ImageCaption from './plugins/ckeditor5-image/src/imagecaption';
+import ImageStyle from './plugins/ckeditor5-image/src/imagestyle';
+import ImageToolbar from './plugins/ckeditor5-image/src/imagetoolbar';
+import ImageUpload from './plugins/ckeditor5-image/src/imageupload';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -46,7 +42,6 @@ InlineEditor.builtinPlugins = [
 	Italic,
 	BlockQuote,
 	CKFinder,
-	EasyImage,
 	Image,
 	ImageCaption,
 	ImageStyle,
