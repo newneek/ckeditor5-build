@@ -82,7 +82,7 @@ InlineEditor.defaultConfig = {
 				model: 'comment',
 				view: {
 					name: 'p',
-					classes: ['comment']
+					classes: ['editorial-comment']
 				},
 				title: '코멘트'
 			},
