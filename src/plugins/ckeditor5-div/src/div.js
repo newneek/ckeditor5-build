@@ -13,6 +13,7 @@ export default class Div extends Plugin {
 		editor.model.schema.register( 'div', {
 			allowWhere: '$block',
 			allowContentOf: '$root',
+			isBlock: true,
 			isObject: true,
 		} );
 		editor.conversion.elementToElement( { model: 'div', view: 'div' } );
