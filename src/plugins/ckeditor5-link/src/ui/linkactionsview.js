@@ -20,7 +20,7 @@ import { ensureSafeUrl } from '../utils';
 
 import unlinkIcon from '../../theme/icons/unlink.svg';
 import pencilIcon from '@ckeditor/ckeditor5-core/theme/icons/pencil.svg';
-import '../../theme/linkactions.css';
+
 
 /**
  * The link actions view class. This view displays link preview, allows
