@@ -12,7 +12,8 @@ export default class Div extends Plugin {
 		const editor = this.editor;
 		editor.model.schema.register( 'div', {
 			allowWhere: '$block',
-			allowContentOf: '$root'
+			allowContentOf: '$root',
+			isObject: true,
 		} );
 		editor.conversion.elementToElement( { model: 'div', view: 'div' } );
 	}

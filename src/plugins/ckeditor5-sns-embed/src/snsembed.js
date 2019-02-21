@@ -41,7 +41,7 @@ export default class SnsEmbed extends Plugin {
 
 					if (instagramElements !== undefined || twitterElements !== undefined) {
 						let stringSnsCodeWithoutScriptTag = new XMLSerializer().serializeToString(doc.documentElement.getElementsByTagName('blockquote')[0]);
-						stringSnsCodeWithoutScriptTag = '<div>' + stringSnsCodeWithoutScriptTag + '</div>'
+						stringSnsCodeWithoutScriptTag = '<div>' + stringSnsCodeWithoutScriptTag + '</div>';
 						const viewFragment = editor.data.processor.toView( stringSnsCodeWithoutScriptTag );
 						const modelFragment = editor.data.toModel( viewFragment );
 						editor.model.insertContent(modelFragment, editor.model.document.selection );
