@@ -56,37 +56,3 @@ InlineEditor.builtinPlugins = [
 	Sns,
 	Div,
 ];
-
-// Editor configuration.
-InlineEditor.defaultConfig = {
-	toolbar: {
-		viewportTopOffset : 60,
-		items: [
-			'heading',
-			'bold',
-			'big',
-			'blockQuote',
-			'quote',
-			'bulletedList',
-			'link',
-			'imageUpload',
-			'mediaEmbed',
-			'sns',
-		]
-	},
-	heading: {
-		options: [
-			{ model: 'paragraph', title: '일반', class: 'ck-heading_paragraph' },
-			{ model: 'heading3', view: 'h3', title: '소제목', class: 'ck-heading_heading3' },
-			{
-				model: 'comment',
-				view: {
-					name: 'p',
-					classes: ['editorial-comment']
-				},
-				title: '코멘트'
-			},
-		]
-	},
-	language: 'en'
-};
