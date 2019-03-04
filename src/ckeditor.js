@@ -93,15 +93,7 @@ InlineEditor.defaultConfig = {
 					classes: ['editorial-interview-question']
 				},
 				title: '인터뷰 질문'
-			},
-			{
-				model: 'notice',
-				view: {
-					name: 'p',
-					classes: ['editorial-notice']
-				},
-				title: '예고'
-			},
+			}
 		]
 	},
 	language: 'en'
