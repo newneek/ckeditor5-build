@@ -16,11 +16,10 @@ import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Quote from './plugins/ckeditor5-quote/src/quote';
-import MediaEmbed from './plugins/ckeditor5-media-embed/src/mediaembed';
+import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Link from './plugins/ckeditor5-link/src/link';
 import Paste from './plugins/ckeditor5-paste/src/paste';
 import Big from './plugins/ckeditor5-big/src/big';
-import Sns from './plugins/ckeditor5-sns-embed/src/sns';
 import BlockQuote from './plugins/ckeditor5-block-quote/src/blockquote';
 import Div from './plugins/ckeditor5-div/src/div';
 import Image from './plugins/ckeditor5-image/src/image';
@@ -53,6 +52,5 @@ InlineEditor.builtinPlugins = [
 	Quote,
 	Big,
 	Heading,
-	Sns,
 	Div,
 ];
