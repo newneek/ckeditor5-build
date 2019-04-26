@@ -5,6 +5,9 @@
 
 'use strict';
 
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+
+
 /* eslint-env node */
 
 const path = require( 'path' );
@@ -53,6 +56,9 @@ module.exports = {
 		new webpack.BannerPlugin( {
 			banner: bundler.getLicenseBanner(),
 			raw: true
+		} ),
+		new MiniCssExtractPlugin( {
+			filename: 'styles.css'
 		} )
 	],
 
@@ -65,12 +71,8 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [
-					{
-						loader: 'style-loader',
-						options: {
-							singleton: true
-						}
-					},
+					MiniCssExtractPlugin.loader,
+					'css-loader',
 					{
 						loader: 'postcss-loader',
 						options: styles.getPostCssConfig( {
@@ -79,7 +81,7 @@ module.exports = {
 							},
 							minify: true
 						} )
-					},
+					}
 				]
 			}
 		]
