@@ -25,28 +25,30 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 
 import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
+import Div from './plugins/ckeditor5-div/src/div';
 
 export default class InlineEditor extends InlineEditorBase {
 }
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
-	Essentials,
-	UploadAdapter,
-	Autoformat,
-	Bold,
-	BlockQuote,
-	CKFinder,
-	Image,
-	ImageCaption,
-	ImageStyle,
-	ImageToolbar,
-	ImageUpload,
-	Link,
-	List,
-	MediaEmbed,
-	PasteFromOffice,
-	Quote,
-	Big,
-	Heading,
+  Essentials,
+  UploadAdapter,
+  Autoformat,
+  Bold,
+  BlockQuote,
+  CKFinder,
+  Image,
+  ImageCaption,
+  ImageStyle,
+  ImageToolbar,
+  ImageUpload,
+  Link,
+  List,
+  MediaEmbed,
+  PasteFromOffice,
+  Heading,
+  Big,
+  Quote,
+  Div,
 ];
