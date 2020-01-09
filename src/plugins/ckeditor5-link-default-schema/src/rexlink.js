@@ -18,12 +18,23 @@ export default class LinkDefaultSchema extends Plugin {
    */
   init() {
     const editor = this.editor;
-    const linkUI = editor.plugins.get(LinkUI);
+    const linkCommand = editor.commands.get( 'link' );
     const defaultSchema = editor.config.get('link.defaultSchema');
 
-    this.linkFormView = linkUI.formView;
-    this.linkActionView = linkUI.actionsView;
+    linkCommand.on('set:value', (evt, propertyName, newValue, oldValue) => {
+      console.log('this.linkCommand');
 
+      if (!newValue) {
+        console.log( `Value is empty adding default schema (old: ${ oldValue }, new: ${ newValue }), withSchema: ${defaultSchema}://` );
+        evt.return = `${defaultSchema}://`;
+      }
+
+      console.log( `Value is not going to change (old: ${ oldValue }, new: ${ newValue })` );
+    });
+
+    // const linkUI = editor.plugins.get(LinkUI);
+    // this.linkFormView = linkUI.formView;
+    // this.linkActionView = linkUI.actionsView;
 
     // this.linkFormView.on('render', (props) => {
     //   const currentUrl = this.linkActionView.href;
@@ -34,59 +45,56 @@ export default class LinkDefaultSchema extends Plugin {
     // });
 
 
-    editor.on('set', (evt, propertyName, newValue, oldValue) => {
-      console.log('editor.change');
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `Current property value is ${ editor[ propertyName ] }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-      return newValue;
-    });
-
-    editor.on('set:linkHref', (evt, propertyName, newValue, oldValue) => {
-      console.log('editor.linkHref');
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `Current property value is ${ editor[ propertyName ] }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-
-      return this._withHttp(newValue, defaultSchema);
-    });
-
-    editor.on('set:href', (evt, propertyName, newValue, oldValue) => {
-      console.log('editor.href');
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `Current property value is ${ editor[ propertyName ] }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-
-      return this._withHttp(newValue, defaultSchema);
-    });
-
-    linkUI.on('set:href', (evt, propertyName, newValue, oldValue) => {
-      console.log('editor.href');
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `Current property value is ${ editor[ propertyName ] }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-
-      return this._withHttp(newValue, defaultSchema);
-    });
-
-    this.linkFormView.urlInputView.on('set:value', (evt, propertyName, newValue, oldValue) => {
-      console.log('this.linkFormView');
-      console.log(evt);
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-
-      return this._withHttp(newValue, defaultSchema);
-    });
-
-    this.linkActionView.on('set:href', (evt, propertyName, newValue, oldValue) => {
-      console.log('this.linkActionView');
-      console.log(evt);
-      console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
-      console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
-
-      return this._withHttp(newValue, defaultSchema);
-    });
-
+    // editor.on('set', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('editor.change');
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `Current property value is ${ editor[ propertyName ] }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //   return newValue;
+    // });
+    //
+    // editor.on('set:linkHref', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('editor.linkHref');
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `Current property value is ${ editor[ propertyName ] }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //
+    //   return this._withHttp(newValue, defaultSchema);
+    // });
+    //
+    // editor.on('set:href', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('editor.href');
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `Current property value is ${ editor[ propertyName ] }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //
+    //   return this._withHttp(newValue, defaultSchema);
+    // });
+    //
+    // linkUI.on('set:href', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('editor.href');
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `Current property value is ${ editor[ propertyName ] }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //
+    //   return this._withHttp(newValue, defaultSchema);
+    // });
+    //
+    // this.linkFormView.urlInputView.on('set:value', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('this.linkFormView');
+    //   console.log(evt);
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //   evt.return = this._withHttp(newValue, defaultSchema);
+    // });
+    //
+    // this.linkActionView.on('set:href', (evt, propertyName, newValue, oldValue) => {
+    //   console.log('this.linkActionView');
+    //   console.log(evt);
+    //   console.log( `Value is going to be changed from ${ oldValue } to ${ newValue }` );
+    //   console.log( `_withHttp value is ${ this._withHttp(newValue, defaultSchema) }` );
+    //   evt.return = this._withHttp(newValue, defaultSchema);
+    // });
 
     // this.linkFormView.once('render', () => {
     //   // to use this in for each callback
