@@ -1,5 +1,4 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import LinkUI from '@ckeditor/ckeditor5-link/src/linkui';
 
 /**
  * @extends module:core/plugin~Plugin
@@ -23,10 +22,6 @@ export default class LinkDefaultSchema extends Plugin {
     const editor = this.editor;
     const linkCommand = editor.commands.get('link');
     const defaultSchema = editor.config.get('link.defaultSchema');
-
-    const linkUI = editor.plugins.get(LinkUI);
-    this.linkFormView = linkUI.formView;
-    this.linkActionView = linkUI.actionsView;
 
     // 저장하기 직전에 url 에 default schema 가 적용된다. (schema 가 없는 경우에만)
     linkCommand.on('set:value', (evt, propertyName, newValue, oldValue) => {
