@@ -26,7 +26,7 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
-import LinkDefaultSchema from './plugins/ckeditor5-link-default-schema/src/rexlink';
+// import LinkDefaultSchema from './plugins/ckeditor5-link-default-schema/src/rexlink';
 
 export default class InlineEditor extends InlineEditorBase {
 }
@@ -52,5 +52,5 @@ InlineEditor.builtinPlugins = [
   Big,
   Quote,
   Div,
-	LinkDefaultSchema,
+	// LinkDefaultSchema,
 ];
