@@ -23,6 +23,37 @@ export default class LinkDefaultSchema extends Plugin {
     const linkCommand = editor.commands.get('link');
     const defaultSchema = editor.config.get('link.defaultSchema');
 
+    editor.model.document.on( 'change:data',(eventInfo, batch) => {
+      // console.log('change:linkHref', eventInfo, batch);
+      for(const operation of batch.operations) {
+        if (operation.key === 'linkHref')
+        console.log(operation);
+        console.log(operation.baseVersion, operation.key, operation.oldValue, operation.newValue);
+      }
+    });
+
+    //
+    //
+    // editor.model.document.on( 'set',(evt, propertyName, newValue, oldValue) => {
+    //   console.log('set', evt, propertyName, newValue, oldValue)
+    //   // if (oldValue === undefined && newValue !== undefined) {
+    //   //   evt.return = this._withHttp(newValue, defaultSchema);
+    //   // }
+    // });
+    //
+    // editor.model.document.on( 'set:linkHref',(evt, propertyName, newValue, oldValue) => {
+    //   console.log('set:linkHref', evt, propertyName, newValue, oldValue)
+    //   // if (oldValue === undefined && newValue !== undefined) {
+    //   //   evt.return = this._withHttp(newValue, defaultSchema);
+    //   // }
+    // });
+    //
+    // editor.on('set:value', (evt, propertyName, newValue, oldValue) => {
+    //   if (oldValue === undefined && newValue !== undefined) {
+    //     evt.return = this._withHttp(newValue, defaultSchema);
+    //   }
+    // });
+
     // 저장하기 직전에 url 에 default schema 가 적용된다. (schema 가 없는 경우에만)
     linkCommand.on('set:value', (evt, propertyName, newValue, oldValue) => {
       if (oldValue === undefined && newValue !== undefined) {
