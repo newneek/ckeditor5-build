@@ -22,13 +22,13 @@ import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import Font from '@ckeditor/ckeditor5-font/src/font';
 
 import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
 
-export default class InlineEditor extends InlineEditorBase {
-}
+export default class InlineEditor extends InlineEditorBase {}
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
@@ -51,4 +51,5 @@ InlineEditor.builtinPlugins = [
   Big,
   Quote,
   Div,
+  Font,
 ];
