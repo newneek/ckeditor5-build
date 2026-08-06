@@ -16,7 +16,9 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Link from '@ckeditor/ckeditor5-link/src/link';
+import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
@@ -39,6 +41,7 @@ InlineEditor.builtinPlugins = [
   Bold,
   BlockQuote,
   CKFinder,
+  CodeBlock,
   HorizontalLine,
   Image,
   ImageCaption,
@@ -46,6 +49,7 @@ InlineEditor.builtinPlugins = [
   ImageToolbar,
   ImageUpload,
   Link,
+  LinkImage,
   List,
   MediaEmbed,
   PasteFromOffice,
