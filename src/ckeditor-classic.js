@@ -4,11 +4,11 @@
  */
 
 // The editor creator to use.
-import InlineEditorBase from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
+import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 
 import builtinPlugins from './plugins-list';
 
-export default class InlineEditor extends InlineEditorBase {}
+export default class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
-InlineEditor.builtinPlugins = builtinPlugins;
+ClassicEditor.builtinPlugins = builtinPlugins;

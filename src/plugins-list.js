@@ -1,0 +1,57 @@
+import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
+import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
+import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import List from '@ckeditor/ckeditor5-list/src/list';
+import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
+import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
+import Link from '@ckeditor/ckeditor5-link/src/link';
+import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage';
+import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
+import Image from '@ckeditor/ckeditor5-image/src/image';
+import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
+import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
+import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+
+import Big from './plugins/ckeditor5-big/src/big';
+import Quote from './plugins/ckeditor5-quote/src/quote';
+import Div from './plugins/ckeditor5-div/src/div';
+import Details from './plugins/ckeditor5-details/src/details';
+import LinkImageManualDecorators from './plugins/ckeditor5-link-image-decorators/src/linkimagemanualdecorators';
+
+// InlineEditor(ckeditor.js)와 ClassicEditor(ckeditor-classic.js) 빌드가 공유하는
+// 기능 플러그인 목록. 에디터 창작자(base) 클래스만 다르고 기능은 동일해야 하므로
+// 목록을 한 곳에서 관리한다.
+export default [
+  Essentials,
+  UploadAdapter,
+  Autoformat,
+  Bold,
+  BlockQuote,
+  CKFinder,
+  CodeBlock,
+  HorizontalLine,
+  Image,
+  ImageCaption,
+  ImageStyle,
+  ImageToolbar,
+  ImageUpload,
+  Link,
+  LinkImage,
+  LinkImageManualDecorators,
+  List,
+  MediaEmbed,
+  PasteFromOffice,
+  Heading,
+  Big,
+  Quote,
+  Div,
+  Details,
+  Font,
+];
