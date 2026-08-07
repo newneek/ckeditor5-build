@@ -31,6 +31,7 @@ import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
 import Details from './plugins/ckeditor5-details/src/details';
+import LinkImageManualDecorators from './plugins/ckeditor5-link-image-decorators/src/linkimagemanualdecorators';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -51,6 +52,7 @@ InlineEditor.builtinPlugins = [
   ImageUpload,
   Link,
   LinkImage,
+  LinkImageManualDecorators,
   List,
   MediaEmbed,
   PasteFromOffice,
