@@ -30,6 +30,7 @@ import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalli
 import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
+import Details from './plugins/ckeditor5-details/src/details';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -57,5 +58,6 @@ InlineEditor.builtinPlugins = [
   Big,
   Quote,
   Div,
+  Details,
   Font,
 ];
