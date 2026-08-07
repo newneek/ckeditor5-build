@@ -16,74 +16,94 @@ const { bundler, styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 
-module.exports = {
-	devtool: 'source-map',
-	performance: { hints: false },
+function createConfig( { entryFile, library, jsFilename, cssFilename } ) {
+	return {
+		devtool: 'source-map',
+		performance: { hints: false },
 
-	entry: path.resolve( __dirname, 'src', 'ckeditor.js' ),
+		entry: path.resolve( __dirname, 'src', entryFile ),
 
-	output: {
-		// The name under which the editor will be exported.
-		library: 'InlineEditor',
+		output: {
+			// The name under which the editor will be exported.
+			library,
 
-		path: path.resolve( __dirname, 'build' ),
-		filename: 'ckeditor.js',
-		libraryTarget: 'umd',
-		libraryExport: 'default'
-	},
+			path: path.resolve( __dirname, 'build' ),
+			filename: jsFilename,
+			libraryTarget: 'umd',
+			libraryExport: 'default'
+		},
 
-	optimization: {
-		minimizer: [
-			new UglifyJsWebpackPlugin( {
-				sourceMap: true,
-				uglifyOptions: {
-					output: {
-						// Preserve CKEditor 5 license comments.
-						comments: /^!/
+		optimization: {
+			minimizer: [
+				new UglifyJsWebpackPlugin( {
+					sourceMap: true,
+					uglifyOptions: {
+						output: {
+							// Preserve CKEditor 5 license comments.
+							comments: /^!/
+						}
 					}
-				}
+				} )
+			]
+		},
+
+		plugins: [
+			new CKEditorWebpackPlugin( {
+				// UI language. Language codes follow the https://en.wikipedia.org/wiki/ISO_639-1 format.
+				// When changing the built-in language, remember to also change it in the editor's configuration (src/ckeditor.js).
+				language: 'en',
+				// additionalLanguages: 'all'
+			} ),
+			new webpack.BannerPlugin( {
+				banner: bundler.getLicenseBanner(),
+				raw: true
+			} ),
+			new MiniCssExtractPlugin( {
+				filename: cssFilename
 			} )
-		]
-	},
+		],
 
-	plugins: [
-		new CKEditorWebpackPlugin( {
-			// UI language. Language codes follow the https://en.wikipedia.org/wiki/ISO_639-1 format.
-			// When changing the built-in language, remember to also change it in the editor's configuration (src/ckeditor.js).
-			language: 'en',
-			// additionalLanguages: 'all'
-		} ),
-		new webpack.BannerPlugin( {
-			banner: bundler.getLicenseBanner(),
-			raw: true
-		} ),
-		new MiniCssExtractPlugin( {
-			filename: 'styles.css'
-		} )
-	],
+		module: {
+			rules: [
+				{
+					test: /\.svg$/,
+					use: [ 'raw-loader' ]
+				},
+				{
+					test: /\.css$/,
+					use: [
+						MiniCssExtractPlugin.loader,
+						'css-loader',
+						{
+							loader: 'postcss-loader',
+							options: styles.getPostCssConfig( {
+								themeImporter: {
+									themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
+								},
+								minify: true
+							} )
+						}
+					]
+				}
+			]
+		}
+	};
+}
 
-	module: {
-		rules: [
-			{
-				test: /\.svg$/,
-				use: [ 'raw-loader' ]
-			},
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					{
-						loader: 'postcss-loader',
-						options: styles.getPostCssConfig( {
-							themeImporter: {
-								themePath: require.resolve( '@ckeditor/ckeditor5-theme-lark' )
-							},
-							minify: true
-						} )
-					}
-				]
-			}
-		]
-	}
-};
+// InlineEditor(/content/{contentId}/inline)와 ClassicEditor(/content/{contentId})가
+// 같은 기능 플러그인(src/plugins-list.js)을 공유하지만 에디터 창작자(base) 클래스와
+// UI 구조가 달라 별도 번들로 빌드한다.
+module.exports = [
+	createConfig( {
+		entryFile: 'ckeditor.js',
+		library: 'InlineEditor',
+		jsFilename: 'ckeditor.js',
+		cssFilename: 'styles.css'
+	} ),
+	createConfig( {
+		entryFile: 'ckeditor-classic.js',
+		library: 'ClassicEditor',
+		jsFilename: 'ckeditor-classic.js',
+		cssFilename: 'styles-classic.css'
+	} )
+];
