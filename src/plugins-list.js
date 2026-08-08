@@ -24,6 +24,7 @@ import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
 import Details from './plugins/ckeditor5-details/src/details';
 import LinkImageOpenInNewTab from './plugins/ckeditor5-link-image-new-tab/src/linkimageopeninnewtab';
+import LinkImageHideDecorators from './plugins/ckeditor5-link-image-new-tab/src/linkimagehidedecorators';
 
 // InlineEditor(ckeditor.js)와 ClassicEditor(ckeditor-classic.js) 빌드가 공유하는
 // 기능 플러그인 목록. 에디터 창작자(base) 클래스만 다르고 기능은 동일해야 하므로
@@ -45,6 +46,7 @@ export default [
   Link,
   LinkImage,
   LinkImageOpenInNewTab,
+  LinkImageHideDecorators,
   List,
   MediaEmbed,
   PasteFromOffice,
