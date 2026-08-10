@@ -8,6 +8,8 @@ export default class ColumnsCommand extends Command {
 
   // count: 2 또는 3 (데스크톱 기준 컬럼 수. 모바일은 항상 1단으로 쌓임)
   execute({ count }) {
+    count = [2, 3].includes(count) ? count : 2;
+
     const model = this.editor.model;
 
     model.change(writer => {
