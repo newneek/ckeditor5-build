@@ -14,7 +14,8 @@ export default class ColumnsEditing extends Plugin {
 
   init() {
     const editor = this.editor;
-    const schema = editor.model.schema;
+    const model = editor.model;
+    const schema = model.schema;
     const conversion = editor.conversion;
 
     editor.commands.add('columns', new ColumnsCommand(editor));
@@ -23,6 +24,7 @@ export default class ColumnsEditing extends Plugin {
       allowWhere: '$block',
       isLimit: true,
       isObject: true,
+      isBlock: true,
       allowAttributes: ['columnsCount'],
     });
 
@@ -33,12 +35,16 @@ export default class ColumnsEditing extends Plugin {
       isObject: true,
     });
 
-    // columnsBlock 안에 columnsBlock이 중첩되는 것만 막는다.
+    // columnsBlock이 (몇 단계를 거치더라도) 자기 자신의 column 안에 중첩되는 것을 막는다.
     schema.addChildCheck((context, childDefinition) => {
-      if (childDefinition.name === 'columnsBlock' && context.endsWith('columnsBlock column')) {
+      if (childDefinition.name === 'columnsBlock' && Array.from(context.getNames()).includes('columnsBlock')) {
         return false;
       }
     });
+
+    // column이 비면(모든 텍스트를 지우면) 커서가 있을 자리가 사라져 이후 입력/삭제가
+    // 깨지므로, 항상 최소 1개의 paragraph를 갖도록 보정한다 (table의 tableCell과 동일한 방식).
+    model.document.registerPostFixer(writer => columnContentsPostFixer(writer, model));
 
     conversion.for('upcast').elementToElement({
       view: { name: 'div', classes: 'content-columns' },
@@ -92,4 +98,47 @@ export default class ColumnsEditing extends Plugin {
       view: (modelElement, { writer }) => writer.createContainerElement('div', { class: 'content-column min-w-0' }),
     });
   }
+}
+
+// table의 table-cell-paragraph-post-fixer.js를 column 구조(행/열 없이 columnsBlock > column만
+// 있는 단순한 구조)에 맞게 줄인 버전. column이 자식 0개가 되지 않도록, 그리고 column 바로
+// 아래에 $text가 직접 놓이지 않도록 보정한다.
+function columnContentsPostFixer(writer, model) {
+  const changes = model.document.differ.getChanges();
+  let wasFixed = false;
+
+  for (const entry of changes) {
+    if (entry.type === 'insert' && entry.name === 'column') {
+      wasFixed = fixColumnContent(entry.position.nodeAfter, writer) || wasFixed;
+    }
+
+    if (isColumnContentChange(entry)) {
+      wasFixed = fixColumnContent(entry.position.parent, writer) || wasFixed;
+    }
+  }
+
+  return wasFixed;
+}
+
+function fixColumnContent(column, writer) {
+  if (column.childCount === 0) {
+    writer.insertElement('paragraph', column);
+    return true;
+  }
+
+  const textNodes = Array.from(column.getChildren()).filter(child => child.is('text'));
+
+  for (const child of textNodes) {
+    writer.wrap(writer.createRangeOn(child), 'paragraph');
+  }
+
+  return !!textNodes.length;
+}
+
+function isColumnContentChange(entry) {
+  if (!entry.position || !entry.position.parent.is('column')) {
+    return false;
+  }
+
+  return (entry.type === 'insert' && entry.name === '$text') || entry.type === 'remove';
 }
