@@ -22,6 +22,7 @@ export default class ColumnsEditing extends Plugin {
     schema.register('columnsBlock', {
       allowWhere: '$block',
       isLimit: true,
+      isObject: true,
       allowAttributes: ['columnsCount'],
     });
 
@@ -29,6 +30,7 @@ export default class ColumnsEditing extends Plugin {
       allowIn: 'columnsBlock',
       allowContentOf: '$root',
       isLimit: true,
+      isObject: true,
     });
 
     // columnsBlock 안에 columnsBlock이 중첩되는 것만 막는다.
