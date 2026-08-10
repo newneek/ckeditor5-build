@@ -33,6 +33,7 @@ import Big from './plugins/ckeditor5-big/src/big';
 import Quote from './plugins/ckeditor5-quote/src/quote';
 import Div from './plugins/ckeditor5-div/src/div';
 import Details from './plugins/ckeditor5-details/src/details';
+import Columns from './plugins/ckeditor5-columns/src/columns';
 import LinkImageOpenInNewTab from './plugins/ckeditor5-link-image-new-tab/src/linkimageopeninnewtab';
 import LinkImageHideDecorators from './plugins/ckeditor5-link-image-new-tab/src/linkimagehidedecorators';
 
@@ -69,6 +70,7 @@ export default [
   Quote,
   Div,
   Details,
+  Columns,
   Font,
   Table,
   TableToolbar,
