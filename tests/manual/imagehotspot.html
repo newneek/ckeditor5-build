@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+  이미지 핫스팟 플러그인 셀프 체크 (빌드 결과물 대상).
+  npm run build 후 브라우저로 열거나, 헤드리스로:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --allow-file-access-from-files \
+    --virtual-time-budget=5000 --dump-dom tests/manual/imagehotspot.html | grep -o 'RESULT:[^<]*'
+-->
+<meta charset="utf-8">
+<div id="editor"></div>
+<pre id="result">RESULT: running</pre>
+<script src="../../build/ckeditor-classic.js"></script>
+<script>
+  const MAKER = '<div style="position:relative;display:block;width:100%;max-width:100%;line-height:0;">\n' +
+    '  <img src="https://img.example.com/a.png" alt="배너" style="display:block;width:100%;height:auto;border:0;">\n' +
+    '  <a href="https://publy.co/a" target="_blank" rel="noopener noreferrer" aria-label="첫 링크" title="첫 링크" style="position:absolute;display:block;left:10%;top:20.5%;width:30%;height:15%;z-index:1;"></a>\n' +
+    '  <a href="https://publy.co/b" aria-label="둘째" title="둘째" style="position:absolute;display:block;left:50%;top:60%;width:25%;height:10%;z-index:1;background:url(https://evil/x)"></a>\n' +
+    '</div>';
+
+  const out = [];
+  const check = (name, ok) => out.push((ok ? 'ok ' : 'FAIL ') + name);
+
+  ClassicEditor.create(document.querySelector('#editor'), { toolbar: ['imageHotspot'] }).then(editor => {
+    editor.setData('<p>앞</p>' + MAKER + '<p>뒤</p>');
+    const data = editor.getData();
+    const doc = new DOMParser().parseFromString(data, 'text/html');
+    const div = doc.querySelector('div[data-hotspot]');
+    const links = div ? div.querySelectorAll(':scope > a') : [];
+
+    check('핫스팟 div 유지', !!div);
+    check('img가 figure로 안 바뀜', !doc.querySelector('figure') && div && div.firstElementChild.tagName === 'IMG');
+    check('빈 a 2개 유지', links.length === 2 && [...links].every(a => a.innerHTML === ''));
+    check('a 위치 style 유지', links[0] && links[0].style.left === '10%' && links[0].style.top === '20.5%' && links[0].style.position === 'absolute');
+    check('a 속성 유지', links[0] && links[0].target === '_blank' && links[0].rel === 'noopener noreferrer' && links[0].getAttribute('aria-label') === '첫 링크');
+    check('새 창 아닌 링크엔 target 없음', links[1] && !links[1].hasAttribute('target'));
+    check('임의 style 제거', !data.includes('evil'));
+    check('앞뒤 문단 유지', doc.body.firstElementChild.textContent === '앞' && doc.body.lastElementChild.textContent === '뒤');
+
+    editor.setData(data);
+    check('저장→다시 열기 왕복 동일', editor.getData() === data);
+
+    editor.setData(MAKER.replace('https://publy.co/a', 'javascript:alert(1)'));
+    check('javascript: 링크 제거', !editor.getData().includes('javascript') && editor.getData().includes('data-hotspot'));
+
+    editor.setData(MAKER.replace('https://img.example.com/a.png', '이미지_주소를_넣어주세요'));
+    check('이미지 주소 없으면 핫스팟 아님', !editor.getData().includes('data-hotspot'));
+
+    const command = editor.commands.get('imageHotspot');
+    editor.setData('<p>본문</p>');
+    check('잘못된 코드는 false', command.execute('<p>그냥 글</p>') === false);
+    check('메이커 코드 삽입', command.execute(MAKER) === true && editor.getData().includes('data-hotspot'));
+    check('선택 시 현재 코드 제공', command.getSelectedHtml().includes('data-hotspot'));
+    command.execute(command.getSelectedHtml().replace('https://publy.co/b', 'https://publy.co/c'));
+    check('선택 상태에서 교체(중복 없음)', (editor.getData().match(/data-hotspot/g) || []).length === 1 && editor.getData().includes('publy.co/c'));
+
+    const failed = out.filter(l => l.startsWith('FAIL')).length;
+    document.querySelector('#result').textContent = `RESULT: ${failed ? 'FAIL' : 'PASS'} ${out.join(' | ')}`;
+  }).catch(e => {
+    document.querySelector('#result').textContent = 'RESULT: ERROR ' + e.stack;
+  });
+</script>
