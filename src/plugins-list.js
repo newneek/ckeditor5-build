@@ -36,6 +36,7 @@ import Details from './plugins/ckeditor5-details/src/details';
 import Columns from './plugins/ckeditor5-columns/src/columns';
 import LinkImageOpenInNewTab from './plugins/ckeditor5-link-image-new-tab/src/linkimageopeninnewtab';
 import LinkImageHideDecorators from './plugins/ckeditor5-link-image-new-tab/src/linkimagehidedecorators';
+import ImageHotspot from './plugins/ckeditor5-image-hotspot/src/imagehotspot';
 
 // InlineEditor(ckeditor.js)와 ClassicEditor(ckeditor-classic.js) 빌드가 공유하는
 // 기능 플러그인 목록. 에디터 창작자(base) 클래스만 다르고 기능은 동일해야 하므로
@@ -58,6 +59,7 @@ export default [
   ImageStyle,
   ImageToolbar,
   ImageUpload,
+  ImageHotspot,
   Link,
   LinkImage,
   LinkImageOpenInNewTab,
